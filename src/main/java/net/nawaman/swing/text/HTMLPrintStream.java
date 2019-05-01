@@ -7,7 +7,7 @@ import net.nawaman.io.NullOutputStream;
  * Filtered PrintStream that converts the printed text into a HTML code.
  * For example: <code>println("<b>Bold</b>")</code> will be converted to <code>"&lt;b&gt;Bold&lt;/b&gt;<br>"</code>
  * 
- * @author nawaman
+ \* @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 class HTMLPrintStream extends FilteredPrintStream {
 

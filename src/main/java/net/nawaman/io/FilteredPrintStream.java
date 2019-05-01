@@ -6,7 +6,7 @@ import java.io.PrintStream;
 /**
  * A PrintStream that transforms the printing text before actually prints it.
  * 
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  **/
 public class FilteredPrintStream extends TeePrintStream {
 	

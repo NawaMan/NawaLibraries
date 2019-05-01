@@ -71,7 +71,7 @@ import javax.swing.undo.UndoManager;
 
 /**
  * Text editor with line number
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class LineNumberedTextComponentPanel extends FixedPanel {
 

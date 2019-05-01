@@ -78,7 +78,7 @@ import net.nawaman.swing.text.HTMLOutputComponent.*;
  *   1. The line that has only tab character (which will be replaced with a tab entry) is not displayed. Still don't
  *          know why and how to solve.
  *   
- * @author Nawapunth Manusitthipol
+ * @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  **/
 public class HTMLOutputPane extends FixedPanel implements Appendable {
 	

@@ -6,7 +6,7 @@ import java.io.PrintStream;
 /**
  * Filtered PrintStream that converts the printed text into a HTML code.
  * 
- * @author nawaman
+ \* @author Nawapunth Manusitthipol (https://github.com/NawaMan)
  */
 public class HTMLPrintStream extends FilteredPrintStream {
 
