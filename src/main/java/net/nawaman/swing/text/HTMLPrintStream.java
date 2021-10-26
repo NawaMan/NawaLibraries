@@ -259,7 +259,8 @@ class HTMLPrintStream extends FilteredPrintStream {
 		while(!this.isFlushingStop);
 		
 		// Starts the flushing mechanism
-		final HTMLPrintStream This = this;
+		@SuppressWarnings("resource")
+        final HTMLPrintStream This = this;
 		
 		// Create a new one
 		this.Timer = new Thread() {

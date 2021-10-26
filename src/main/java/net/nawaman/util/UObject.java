@@ -5,7 +5,7 @@ import java.lang.reflect.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-@SuppressWarnings("unchecked")
+@SuppressWarnings({ "rawtypes" })
 class TheComparater implements Comparator {
 	
 	public int compare(Object O1, Object O2) {
@@ -28,10 +28,10 @@ public class UObject {
 	
 	private UObject() {}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	static Comparator Comparator = new TheComparater();
 	/** Returns the comparator. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	static public Comparator getTheComparator() {
 		return UObject.Comparator;
 	}
@@ -105,7 +105,7 @@ public class UObject {
 		return UObject.hash(I.iterator());
 	}
 	/** Returns hash value of a map value. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public int hash(Map M) {
 		int H = 0;
 		int Offset = 10;
@@ -178,7 +178,7 @@ public class UObject {
 	
 	// Equal ---------------------------------------------------------------------------------------
 	/** Checks if object O1 and O2 equals. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public boolean equal(Object O1, Object O2) {
 		if(O1 == O2) return true;
 
@@ -235,7 +235,7 @@ public class UObject {
 		   ((O2 instanceof Iterator) || (O2 instanceof Iterable))) {
 			Iterator I1 = (O1 instanceof Iterable)?((Iterable)O1).iterator():(Iterator)O1;
 			Iterator I2 = (O2 instanceof Iterable)?((Iterable)O2).iterator():(Iterator)O2;
-			for(int i = 0; I1.hasNext(); i++) {
+			for(; I1.hasNext(); ) {
 				if(I2.hasNext()) return false;
 				if(!UObject.equal(I1.next(), I2.next())) return false;
 			}
@@ -277,7 +277,7 @@ public class UObject {
 
 	// Compare -------------------------------------------------------------------------------------
 	/** Compares object O1 and O2. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public int compare(Object O1, Object O2) {
 		if(O1 == O2) return 0;
 
@@ -362,7 +362,7 @@ public class UObject {
 	    return (I == null)?"null":UObject.toString(I.iterator());
 	}
 	/** Returns string representation of a map value. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public String toString(Map M, String pOpen, String pClose, String pAssociate, String pSeparator) {
 		if(M        == null) return "null:" + pOpen + pAssociate + pClose;
 		if(M.size() ==    0) return pOpen + pAssociate + pClose;
@@ -381,7 +381,7 @@ public class UObject {
 		return SB.toString();
 	}
 	/** Returns string representation of a map value. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public String toString(Map M, boolean isLeading, int pWidth, String pOpen, String pClose,
 			                String pAssociate, String pSeparator, String pPrefix) {
 		if(M        == null) return "null:" + pOpen + pAssociate + pClose;
@@ -412,11 +412,11 @@ public class UObject {
 		return SB.toString();
 	}
 	/** Returns string representation of a map value. */
-	@SuppressWarnings("unchecked")
-	static public String toString(Map M) { return toString(M, "{", "}", "->", ", "); }
+	@SuppressWarnings("rawtypes")
+    static public String toString(Map M) { return toString(M, "{", "}", "->", ", "); }
 	
 	/** Returns string representation of an iterator value. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public String toString(FieldHolder F, String pOpen, String pClose, String pSeparator) {
 		if(F                 == null) return "null" + pOpen + pSeparator + pClose;
 		if(F.getFieldCount() ==    0) return pOpen + pSeparator + pClose;
@@ -550,7 +550,7 @@ public class UObject {
 		return UObject.toDetail(I.iterator());
 	}
 	/** Returns string detail representation of a map value. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public String toDetail(Map M) {
 		if(M        == null) return "null:{->}";
 		if(M.size() ==    0) return "{->}";
@@ -569,7 +569,7 @@ public class UObject {
 		return SB.toString();
 	}
 	/** Returns string detail representation of a fieldholder value. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public String toDetail(FieldHolder F) {
 		if(F                 == null) return "null:{;}";
 		if(F.getFieldCount() ==    0) return "{;}";

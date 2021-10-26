@@ -29,6 +29,7 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
@@ -191,7 +192,7 @@ public class LineNumberedTextComponentPanel extends FixedPanel {
 
 		MI_Cut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_X,
-				java.awt.event.InputEvent.CTRL_MASK));
+				java.awt.event.InputEvent.CTRL_DOWN_MASK));
 		MI_Cut.setMnemonic('t');
 		MI_Cut.setText("Cut");
 		MI_Cut.addActionListener(new ActionListener() {
@@ -201,7 +202,7 @@ public class LineNumberedTextComponentPanel extends FixedPanel {
 
 		MI_Copy.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_C,
-				java.awt.event.InputEvent.CTRL_MASK));
+				java.awt.event.InputEvent.CTRL_DOWN_MASK));
 		MI_Copy.setMnemonic('C');
 		MI_Copy.setText("Copy                 ");
 		MI_Copy.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +212,7 @@ public class LineNumberedTextComponentPanel extends FixedPanel {
 
 		MI_Paste.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_V,
-				java.awt.event.InputEvent.CTRL_MASK));
+				java.awt.event.InputEvent.CTRL_DOWN_MASK));
 		MI_Paste.setMnemonic('P');
 		MI_Paste.setText("Paste");
 		MI_Paste.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +223,7 @@ public class LineNumberedTextComponentPanel extends FixedPanel {
 
 		MI_Undo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_Z,
-				java.awt.event.InputEvent.CTRL_MASK));
+				java.awt.event.InputEvent.CTRL_DOWN_MASK));
 		MI_Undo.setMnemonic('U');
 		MI_Undo.setText("Undo");
 		MI_Undo.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +233,7 @@ public class LineNumberedTextComponentPanel extends FixedPanel {
 
 		MI_Redo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
 				java.awt.event.KeyEvent.VK_Y,
-				java.awt.event.InputEvent.CTRL_MASK));
+				java.awt.event.InputEvent.CTRL_DOWN_MASK));
 		MI_Redo.setMnemonic('R');
 		MI_Redo.setText("Redo");
 		MI_Redo.addActionListener(new java.awt.event.ActionListener() {
@@ -696,8 +697,8 @@ public class LineNumberedTextComponentPanel extends FixedPanel {
 			JSP.getHorizontalScrollBar().setUnitIncrement(CFMHeight);
 			JSP.getVerticalScrollBar().setUnitIncrement(CFMHeight);
 
-			int Start = this.JTComponent.viewToModel(Pos);
-			int End   = this.JTComponent.viewToModel(new Point(Pos.x + JSP.getWidth(), Pos.y + JSP.getHeight()));
+			int Start = this.JTComponent.viewToModel2D(new Point2D.Double(Pos.x, Pos.y));
+			int End   = this.JTComponent.viewToModel2D(new Point2D.Double(Pos.x + JSP.getWidth(), Pos.y + JSP.getHeight()));
 			
 			StartLine = CurrentDoc.getDefaultRootElement().getElementIndex(Start);
 			EndLine   = CurrentDoc.getDefaultRootElement().getElementIndex(End);

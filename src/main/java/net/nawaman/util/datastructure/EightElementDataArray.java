@@ -21,10 +21,9 @@ public class EightElementDataArray<T> implements DataArray<T> {
 	static final int LengthPos = Limit;
 	
 	/** Creates a new EightElement DataArray */
-	@SuppressWarnings("unchecked")
 	static public <E> EightElementDataArray<E> newInstance(Class<E> pCClass, int pLength) {
 		if((pCClass == null) || (pLength < -1)) return null;
-		return new EightElementDataArray(pCClass, pLength);
+		return new EightElementDataArray<>(pCClass, pLength);
 	}
 	
 	/** Constructs a new EightElement DataArray */

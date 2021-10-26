@@ -564,8 +564,8 @@ public class UClass {
 	}
 	
 	/** Checks if the classes of the parameter is compatible with the given parameters. **/
-	@SuppressWarnings("unchecked")
-	static protected SearchResult checkMemberByParams(Object SO, Class<?>[] pPClass, Object[] pParams, boolean pIsToAdjust) {
+	@SuppressWarnings("rawtypes")
+    static protected SearchResult checkMemberByParams(Object SO, Class<?>[] pPClass, Object[] pParams, boolean pIsToAdjust) {
 		if(pPClass == null) return null;
 		
 		//if((pPClass.length == 0) || (pParams        == null)) return new SearchResult(SO, UObject.EmptyObjectArray);

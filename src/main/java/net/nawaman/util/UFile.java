@@ -40,13 +40,9 @@ public class UFile {
 	/** Saves objects to a file */
 	static public void saveObjectsToFile(File pFile, Serializable[] pObjects) throws IOException {
 		// Save it to the file
-		FileOutputStream FOS = null;
-		try {
-			FOS = new FileOutputStream(pFile);
-			ObjectOutputStream OOS = new ObjectOutputStream(FOS);
+		try (var FOS = new FileOutputStream(pFile);
+		     var OOS = new ObjectOutputStream(FOS)) {
 			OOS.writeObject(pObjects);
-		} finally {
-			if(FOS != null) FOS.close();
 		}
 	}
 

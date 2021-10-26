@@ -15,7 +15,7 @@ import net.nawaman.util.*;
 public class FixedLengthDataArray<T> implements DataArray<T> {
 	
 	/** Creates a new fixed-length data array. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public <E> FixedLengthDataArray<E> newInstance(Class<E> pCClass, int pLength) {
 		if(pLength < 0)     throw new NegativeArraySizeException("Unable to create an apeendable data array with the size of " + pLength);
 		if(pCClass == null) throw new IllegalArgumentException("Unable to create an apeendable data array of null or void type.");
@@ -23,7 +23,7 @@ public class FixedLengthDataArray<T> implements DataArray<T> {
 		return new FixedLengthDataArray(pCClass, pLength);
 	}
 	/** Creates a new fixed-length data array. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public <E> FixedLengthDataArray<E> newInstance(E[] pArray) {
 		if(pArray == null) throw new NullPointerException();
 
@@ -35,7 +35,7 @@ public class FixedLengthDataArray<T> implements DataArray<T> {
 		return FLDA;
 	}
 	/** Creates a new fixed-length data array. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public <E> FixedLengthDataArray<E> newInstance(DataArray<E> pArray) {
 		if(pArray == null) throw new NullPointerException();
 		FixedLengthDataArray<E> FLDA = new FixedLengthDataArray(pArray.getComponentClass(), pArray.getLength());
@@ -43,7 +43,7 @@ public class FixedLengthDataArray<T> implements DataArray<T> {
 		return FLDA;
 	}
 	/** Creates a new fixed-length data array. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public <E> FixedLengthDataArray<E> newInstance(Object pArray) {
 		if(pArray == null)          throw new NullPointerException();
 		if(!UArray.isArrayInstance(pArray)) throw new IllegalArgumentException("The input is not an array.");

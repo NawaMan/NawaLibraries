@@ -20,10 +20,9 @@ public class EightElementOrMoreDataArray<T> implements DataArray<T> {
 	static final int Limit = EightElementDataArray.Limit;
 	
 	/** Creates a new EightElementOrMoreDataArray. */
-	@SuppressWarnings("unchecked")
 	static public <E> EightElementOrMoreDataArray<E> newInstance(Class<E> pCClass, int pLength) {
 		if((pCClass == null) || (pLength < -1)) return null;
-		return new EightElementOrMoreDataArray(pCClass, pLength);
+		return new EightElementOrMoreDataArray<>(pCClass, pLength);
 	}
 	
 	/** Constructs a new EightElementOrMoreDataArray DataArray */

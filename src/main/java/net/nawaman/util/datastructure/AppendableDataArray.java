@@ -15,19 +15,17 @@ public class AppendableDataArray<T> implements DataArray<T> {
 	static final int DefaultStep    = 5;
 	
 	/** Creates a new appendable data array. */
-	@SuppressWarnings("unchecked")
 	static public <E> AppendableDataArray<E> newInstance(Class<E> pCClass, int pLength) {
 		if(pLength < 0)     throw new NegativeArraySizeException("Unable to create an apeendable data array with the size of " + pLength);
 		if(pCClass == null) throw new IllegalArgumentException("Unable to create an apeendable data array of null or void type.");
 		
-		return new AppendableDataArray(pCClass, pLength);
+		return new AppendableDataArray<>(pCClass, pLength);
 	}
 	/** Creates a new appendable data array. */
-	@SuppressWarnings("unchecked")
 	static public <E> AppendableDataArray<E> newInstance(Class<E> pCClass) {
 		if(pCClass == null) throw new IllegalArgumentException("Unable to create an apeendable data array of null or void type.");
 		
-		return new AppendableDataArray(pCClass, DefaultInitial);
+		return new AppendableDataArray<>(pCClass, DefaultInitial);
 	}
 	/** Creates a new appendable data array. */
 	@SuppressWarnings("unchecked")
@@ -37,16 +35,16 @@ public class AppendableDataArray<T> implements DataArray<T> {
 		Class<?> Cls = UArray.getComponentType_OfInstance(pArray);
 		if(!Cls.isArray()) Cls = UClass.getCLASS(Cls);
 		
-		AppendableDataArray<E> ADA = new AppendableDataArray(Cls, pArray.length);
+		@SuppressWarnings("rawtypes")
+        AppendableDataArray<E> ADA = new AppendableDataArray(Cls, pArray.length);
 		for(int i = pArray.length; --i >= 0; ) ADA.setData(i, pArray[i]);
 		return ADA;
 	}
 	/** Creates a new appendable data array. */
-	@SuppressWarnings("unchecked")
 	static public <E> AppendableDataArray<E> newInstance(DataArray<E> pArray) {
 		if(pArray == null) throw new NullPointerException();
 		
-		AppendableDataArray<E> ADA = new AppendableDataArray(pArray.getComponentClass(), pArray.getLength());
+		AppendableDataArray<E> ADA = new AppendableDataArray<>(pArray.getComponentClass(), pArray.getLength());
 		for(int i = pArray.getLength(); --i >= 0; ) ADA.setData(i, pArray.getData(i));
 		return ADA;
 	}
@@ -59,7 +57,8 @@ public class AppendableDataArray<T> implements DataArray<T> {
 		Class<?> Cls = UArray.getComponentType_OfInstance(pArray);
 		if(!Cls.isArray()) Cls = UClass.getCLASS(Cls);
 		
-		AppendableDataArray<E> ADA = new AppendableDataArray(Cls, UArray.getLength(pArray));
+		@SuppressWarnings("rawtypes")
+        AppendableDataArray<E> ADA = new AppendableDataArray(Cls, UArray.getLength(pArray));
 		for(int i = ADA.getLength(); --i >= 0;) ADA.setData(i, (E)UArray.get(pArray, i));
 		return ADA;
 	}

@@ -99,7 +99,7 @@ public class UArray {
 	}
 
 	/** Sets the value pValue at the position pPos of the Array pArray. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public Object set(Object pArray, int pPos, Object pValue) {
 		if(pArray == null) throw new NullPointerException();
 		
@@ -503,7 +503,7 @@ public class UArray {
 		return New;
 	}
 	/** Trim the source array from the front at the pPos position. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public Object getArrayTrimFront(Object Source, int pPos) {
 		if(Source == null)              return null;
 		if(Source instanceof DataArray) return getArrayTrimFront((DataArray)Source, pPos);
@@ -541,7 +541,7 @@ public class UArray {
 		return New;
 	}
 	/** Trim the source array from the back at the pPos position. */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public Object getArrayTrimBack(Object Source, int pPos) {
 		if(Source == null)              return null;
 		if(Source instanceof DataArray) return getArrayTrimBack((DataArray)Source, pPos);
@@ -593,7 +593,7 @@ public class UArray {
 	/**
 	 * Resize the source array to the ToSize length. In case of extending, fill the empty space with O.
 	 **/
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public Object resizeArray(Object Source, int pToSize, Object O) {
 		if(Source == null)           return null;
 		if(pToSize <  0)             return null;
@@ -646,7 +646,7 @@ public class UArray {
 	// Deep clone ---------------------------------------------------------------------------------
 	
 	/** Create a deep clone (deep clone of Array and Vector for all its elements) */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	static public Object deepClone(Object pArray) {
 		if((pArray == null) || pArray.getClass().isPrimitive()) return pArray;
 		

@@ -50,7 +50,7 @@ public class DataArray_Proxy<T> implements DataArray<T> {
 	/** Returns the array duplication of this DataArray */
 	@SuppressWarnings("unchecked")
 	public T[] toArray() {
-		if(this.Source instanceof DataArray) return (T[])((DataArray)this.Source).toArray();
+		if(this.Source instanceof DataArray) return (T[])((DataArray<T>)this.Source).toArray();
 		T[] Ts = UArray.newArray(this.getComponentClass(), this.getLength());
 		for(int i = Ts.length; --i >= 0; ) Ts[i] = (T)UArray.get(this.Source, i);
 		return Ts;

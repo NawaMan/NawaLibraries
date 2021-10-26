@@ -58,7 +58,7 @@ public class ArrayIterator<T> implements Iterator<T> {
     @SuppressWarnings("unchecked")
     public T next() {
     	if(!this.hasNext()) return null;
-    	if(this.O instanceof DataArray) return (T)(((DataArray)this.O).getData(this.C++));
+    	if(this.O instanceof DataArray) return (T)(((DataArray<T>)this.O).getData(this.C++));
     	else                            return (T)(Array.get(this.O, this.C++));
     }
     

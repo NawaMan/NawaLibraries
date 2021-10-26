@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.LayoutManager;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
@@ -43,9 +42,8 @@ import net.nawaman.io.TypeFileFilter;
 import net.nawaman.swing.Clipboard;
 import net.nawaman.swing.FixedPanel;
 import net.nawaman.swing.TextWrapPanel;
+import net.nawaman.swing.text.HTMLOutputComponent.HTMLOutputDocument;
 import net.nawaman.util.UString;
-
-import net.nawaman.swing.text.HTMLOutputComponent.*;
 
 // Implementation Note:
 // Simulating tab using JPanel is inspired by the code in forum. In the post, a button is created when custom tag 'button'
@@ -192,7 +190,7 @@ public class HTMLOutputPane extends FixedPanel implements Appendable {
 		// Copy as plain text -----------------------------------------------------------
 		final JMenuItem  MI_CopyAsPlainText = new JMenuItem();
 		MI_CopyAsPlainText.setAccelerator(javax.swing.KeyStroke.getKeyStroke(
-				KeyEvent.VK_C, InputEvent.CTRL_MASK));
+				KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK));
 		MI_CopyAsPlainText.setMnemonic('C');
 		MI_CopyAsPlainText.setText("Copy                 ");
 		MI_CopyAsPlainText.addActionListener(new ActionListener() {
@@ -518,8 +516,8 @@ public class HTMLOutputPane extends FixedPanel implements Appendable {
 			int S = Offset;
 			int E = Offset + Length;
 			
-			Rectangle R0 = TheTextComponent.modelToView(S);
-			Rectangle R1 = TheTextComponent.modelToView(E);
+			var R0 = TheTextComponent.modelToView2D(S);
+			var R1 = TheTextComponent.modelToView2D(E);
 
 			int W = this.TheTextComponent.getPreferredSize().width;
 			int H = (int)(R1.getY() + R1.getHeight() - R0.getY());
@@ -549,8 +547,8 @@ public class HTMLOutputPane extends FixedPanel implements Appendable {
 			int S = Math.min(OrgS, OrgE);
 			int E = Math.max(OrgS, OrgE);
 			
-			Rectangle R0 = TheTextComponent.modelToView(S);
-			Rectangle R1 = TheTextComponent.modelToView(E);
+			var R0 = TheTextComponent.modelToView2D(S);
+			var R1 = TheTextComponent.modelToView2D(E);
 
 			int W = this.TheTextComponent.getPreferredSize().width;
 			int H = (int)(R1.getY() + R1.getHeight() - R0.getY());
@@ -1088,40 +1086,41 @@ public class HTMLOutputPane extends FixedPanel implements Appendable {
 			@Override 
 			public void run() {
 				PrintStream POut = HOP. getSimpleFormatterPrintStream();
-				PrintStream PErr = new PrintStream(HOP, new Formatter("<font color='red'>%s</font>", false));
-				
-				HOP.clearPattern().addBold().addItalic().changeRelativeFontSize(1);
-				POut.println("Hello");
-				Delay();
-				
-				PErr.println("Error");
-				Delay();
-				
-				POut.print("W\no\n\n\n\trl\tk\nd");
-				Delay();
-				
-				POut.print("a");
-				Delay();
-				
-				HOP.changeColor(Color.RED);
-				POut.println("b");
-				Delay();
-				
-				HOP.changeColor(Color.GREEN);
-				POut.print("c");
-				Delay();
-				
-				HOP.changeColor(Color.BLUE);
-				POut.println("s");
-				Delay();
-
-				HOP.changeColor(Color.orange);
-				POut.println("Orange");
-				Delay();
-
-				HOP.changeColor(Color.GRAY);
-				POut.println("Grey");
-				Delay();
+				try (var PErr = new PrintStream(HOP, new Formatter("<font color='red'>%s</font>", false))) {
+    				
+    				HOP.clearPattern().addBold().addItalic().changeRelativeFontSize(1);
+    				POut.println("Hello");
+    				Delay();
+    				
+    				PErr.println("Error");
+    				Delay();
+    				
+    				POut.print("W\no\n\n\n\trl\tk\nd");
+    				Delay();
+    				
+    				POut.print("a");
+    				Delay();
+    				
+    				HOP.changeColor(Color.RED);
+    				POut.println("b");
+    				Delay();
+    				
+    				HOP.changeColor(Color.GREEN);
+    				POut.print("c");
+    				Delay();
+    				
+    				HOP.changeColor(Color.BLUE);
+    				POut.println("s");
+    				Delay();
+    
+    				HOP.changeColor(Color.orange);
+    				POut.println("Orange");
+    				Delay();
+    
+    				HOP.changeColor(Color.GRAY);
+    				POut.println("Grey");
+    				Delay();
+				}
 			}
 		}).start();
 		

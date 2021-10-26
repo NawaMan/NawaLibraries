@@ -235,7 +235,8 @@ public class UNumber {
 	 *       Integer number will be upgraded when 2*HALF(of Max) + 2 precision while,
 	 *       Real    number will be upgraded when 2*HALF(of Max) + 1 precision.
 	 **/
-	static public Number plus(Number ... pParams) {
+	@SuppressWarnings("incomplete-switch")
+    static public Number plus(Number ... pParams) {
 		if(pParams        == null) return 0;									// Returns because summation of [] is 0
 		if(pParams.length ==    0) return 0;									// Returns because summation of [] is 0
 		if(pParams.length ==    1) return (pParams[0] == null)?0:pParams[0];	// Returns because summation of [0]
@@ -1264,7 +1265,7 @@ public class UNumber {
 		NumberType NT1 = NumberType.valueOf(N1);
 		NumberType NT2 = NumberType.valueOf(N2);
 		if(NT1 == NT2) {
-			if((N1 instanceof Comparable) && (((Comparable)N1).compareTo(N2) == 0)) return true;
+			if((N1 instanceof Comparable) && (((Comparable<Number>)N1).compareTo(N2) == 0)) return true;
 			return N1.equals(N2);
 		}
 		return false;
@@ -1280,7 +1281,7 @@ public class UNumber {
 		NumberType NT1 = NumberType.valueOf(N1);
 		NumberType NT2 = NumberType.valueOf(N2);
 		if(NT1 == NT2) {
-			if((N1 instanceof Comparable) && (((Comparable)N1).compareTo(N2) == 0)) return true; 
+			if((N1 instanceof Comparable) && (((Comparable<Number>)N1).compareTo(N2) == 0)) return true; 
 			return N1.equals(N2);
 		}
 		
